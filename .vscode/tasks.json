@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: 구성",
+            "type": "process",
+            "command": "cmake",
+            "args": ["--preset", "macos-arm64"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc", "$msCompile"],
+            "windows": {
+                "args": ["--preset", "windows-x64"]
+            }
+        },
+        {
+            "label": "CMake: BubbleBobble 빌드",
+            "type": "process",
+            "command": "cmake",
+            "args": ["--build", "--preset", "macos-arm64"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "dependsOn": "CMake: 구성",
+            "dependsOrder": "sequence",
+            "problemMatcher": ["$gcc", "$msCompile"],
+            "group": { "kind": "build", "isDefault": true },
+            "windows": {
+                "args": ["--build", "--preset", "windows-x64"]
+            }
+        }
+    ]
+}
